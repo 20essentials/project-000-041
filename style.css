@@ -4,17 +4,26 @@
   box-sizing: border-box;
   margin: 0;
   padding: 0;
+  user-select: none;
 }
 
-html, 
+html,
 body {
   width: 100%;
   height: 100%;
 }
 
 body {
-  
   background-image: radial-gradient(transparent 30%, mediumturquoise);
+}
+
+@keyframes toTop {
+  0% {
+    transform: translate(-50%, -70%);
+  }
+  100% {
+    transform: translate(-50%, -50%);
+  }
 }
 
 .center {
@@ -24,8 +33,16 @@ body {
   transform: translate(-50%, -50%);
   display: flex;
   flex-direction: column;
- 
-  
+  animation: toTop 1s linear both;
+
+  &:hover {
+    .monitor {
+      img {
+        background: #000;
+      }
+    }
+  }
+
   .monitor {
     width: 320px;
     height: 170px;
@@ -33,12 +50,19 @@ body {
     border-top-left-radius: 10px;
     border-top-right-radius: 10px;
     overflow: hidden;
-    
+
+    &:hover {
+      img {
+        filter: saturate(150%);
+      }
+    }
+
     img.mon {
       width: 100%;
       height: 100%;
       aspect-ratio: 16 / 9;
       top: 0;
+      transition: filter 0.4s ease;
     }
 
     &::before {
@@ -75,7 +99,7 @@ body {
   }
 
   img.manzanita {
-    width: .9rem;
+    width: 0.9rem;
     height: auto;
     position: absolute;
     left: 50%;
@@ -86,6 +110,6 @@ body {
 
 @media (width <= 1000px) {
   .center {
-    transform: translate(-50%, -50%) scale(.7);
+    transform: translate(-50%, -50%) scale(0.7);
   }
 }
